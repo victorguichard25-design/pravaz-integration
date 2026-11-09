@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lycée Charles Gabriel Pravaz - Livret d'Accueil & Intégration</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        pravaz: {
+                            navy: '#0f172a',      /* Bleu marine sombre */
+                            blue: '#1e3a8a',      /* Bleu marine institutionnel */
+                            lightBlue: '#3b82f6', /* Bleu d'accentuation */
+                            pastelGreen: '#a7f3d0',/* Vert pastel doux */
+                            mint: '#10b981',      /* Vert menthe */
+                            amber: '#f59e0b',     /* Accentuation */
+                            grayBg: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 55%, #059669 100%);
+        }
+        @media print {
+            header, footer, nav, .no-print {
+                display: none !important;
+            }
+            .print-only {
+                display: block !important;
+            }
+            body {
+                background: white;
+                color: black;
+            }
+            .tab-content {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Header / Nav -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Logo & Brand -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('accueil')">
+                    <div class="w-12 h-12 bg-pravaz-blue text-white rounded-xl flex items-center justify-center font-extrabold text-xl shadow-md shadow-blue-900/20">
+                        CGP
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold text-slate-900 tracking-tight block">Lycée C. G. Pravaz</span>
+                        <span class="text-xs font-semibold text-emerald-600 uppercase tracking-widest block">Livret d'Accueil & Intégration</span>
+                    </div>
+                </div>
+
+                <!-- Navigation Desktop -->
+                <nav class="hidden md:flex space-x-2">
+                    <button onclick="switchTab('accueil')" id="nav-accueil" class="nav-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition-all text-pravaz-blue bg-blue-50">
+                        <i class="fa-solid fa-house mr-2"></i>Accueil & Inscription
+                    </button>
+                    <button onclick="switchTab('programme')" id="nav-programme" class="nav-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-pravaz-blue hover:bg-slate-100 transition-all">
+                        <i class="fa-solid fa-calendar-alt mr-2"></i>Programme Journée
+                    </button>
+                    <button onclick="switchTab('infos')" id="nav-infos" class="nav-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-pravaz-blue hover:bg-slate-100 transition-all">
+                        <i class="fa-solid fa-info-circle mr-2"></i>Infos & Contacts
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-4 space-y-2 no-print">
+            <button onclick="switchTab('accueil'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-xl font-semibold text-pravaz-blue bg-blue-50 flex items-center">
+                <i class="fa-solid fa-house w-6 text-center mr-3"></i>Accueil & Inscription
+            </button>
+            <button onclick="switchTab('programme'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-xl font-semibold text-slate-700 hover:bg-slate-100 flex items-center">
+                <i class="fa-solid fa-calendar-alt w-6 text-center mr-3"></i>Programme de la Journée
+            </button>
+            <button onclick="switchTab('infos'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-xl font-semibold text-slate-700 hover:bg-slate-100 flex items-center">
+                <i class="fa-solid fa-info-circle w-6 text-center mr-3"></i>Infos & Contacts
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- ================= ONGLET 1: ACCUEIL & FORMULAIRE ================= -->
+        <section id="section-accueil" class="tab-content block">
+            
+            <!-- Hero Banner -->
+            <div class="hero-gradient text-white py-14 lg:py-20 relative overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="max-w-3xl space-y-4">
+                        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-200 border border-emerald-400/30">
+                            <i class="fa-solid fa-hand-shake"></i> Rentrée & Intégration Enseignants
+                        </span>
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                            Bienvenue au Lycée <span class="text-emerald-300">Charles Gabriel Pravaz</span>
+                        </h1>
+                        <p class="text-base sm:text-lg text-blue-100 leading-relaxed font-normal">
+                            Toute l'équipe de direction et la communauté éducative vous souhaitent la plus chaleureuse des bienvenues. Ce portail interactif simplifie vos démarches d'installation et vous guide tout au long de votre journée d'intégration.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulaire Container -->
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20 pb-16">
+                
+                <!-- Notification données sauvegardées -->
+                <div id="saved-alert" class="hidden mb-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-circle-check text-emerald-600 text-xl"></i>
+                        <span class="text-sm font-medium">Une fiche d'intégration est enregistrée localement sur ce navigateur.</span>
+                    </div>
+                    <button onclick="loadSavedData()" class="text-xs bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-3 rounded-lg transition">
+                        Charger ma fiche
+                    </button>
+                </div>
+
+                <!-- Card Formulaire -->
+                <div class="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
+                    <div class="p-6 sm:p-10">
+                        <div class="mb-8 border-b border-slate-100 pb-6">
+                            <h2 class="text-2xl font-bold text-slate-900">Fiche de Renseignements Nouveaux Enseignants</h2>
+                            <p class="text-sm text-slate-500 mt-1">Veuillez compléter vos informations afin de préparer vos accès et votre matériel.</p>
+                        </div>
+
+                        <form id="integrationForm" onsubmit="handleFormSubmit(event)" class="space-y-8">
+                            
+                            <!-- Section 1 : État Civil -->
+                            <div>
+                                <h3 class="text-base font-bold text-pravaz-blue mb-4 flex items-center gap-2">
+                                    <i class="fa-solid fa-user text-emerald-500"></i> Identité & Contact
+                                </h3>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Nom *</label>
+                                        <input type="text" id="nom" required placeholder="ex. MARTIN" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-pravaz-blue focus:border-transparent outline-none transition text-sm">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Prénom *</label>
+                                        <input type="text" id="prenom" required placeholder="ex. Sophie" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-pravaz-blue focus:border-transparent outline-none transition text-sm">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Adresse Email Académique *</label>
+                                        <input type="email" id="email" required placeholder="sophie.martin@ac-grenoble.fr" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-pravaz-blue focus:border-transparent outline-none transition text-sm">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Discipline / Matière *</label>
+                                        <input type="text" id="discipline" required placeholder="ex. Mathématiques, Lettres, EPS..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-pravaz-blue focus:border-transparent outline-none transition text-sm">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Section 2 : Statut -->
+                            <div class="pt-4 border-t border-slate-100">
+                                <h3 class="text-base font-bold text-pravaz-blue mb-4 flex items-center gap-2">
+                                    <i class="fa-solid fa-id-badge text-emerald-500"></i> Statut dans l'Établissement
+                                </h3>
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                                    <label class="flex items-center space-x-3 p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                                        <input type="radio" name="statut" value="Titulaire" checked class="form-radio text-pravaz-blue focus:ring-pravaz-blue">
+                                        <span class="text-sm font-semibold text-slate-700">Titulaire</span>
+                                    </label>
+                                    <label class="flex items-center space-x-3 p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                                        <input type="radio" name="statut" value="Stagiaire" class="form-radio text-pravaz-blue focus:ring-pravaz-blue">
+                                        <span class="text-sm font-semibold text-slate-700">Stagiaire</span>
+                                    </label>
+                                    <label class="flex items-center space-x-3 p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                                        <input type="radio" name="statut" value="TZR" class="form-radio text-pravaz-blue focus:ring-pravaz-blue">
+                                        <span class="text-sm font-semibold text-slate-700">TZR</span>
+                                    </label>
+                                    <label class="flex items-center space-x-3 p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                                        <input type="radio" name="statut" value="Contractuel" class="form-radio text-pravaz-blue focus:ring-pravaz-blue">
+                                        <span class="text-sm font-semibold text-slate-700">Contractuel</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Section 3 : Besoins Spécifiques & Formations -->
+                            <div class="pt-4 border-t border-slate-100">
+                                <h3 class="text-base font-bold text-pravaz-blue mb-4 flex items-center gap-2">
+                                    <i class="fa-solid fa-list-check text-emerald-500"></i> Besoins Matériels & Formations Souhaitées
+                                </h3>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <label class="flex items-center space-x-3 p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                                        <input type="checkbox" value="Accès Réseau & Pronote" class="besoin-cb rounded text-emerald-600 focus:ring-emerald-500">
+                                        <span class="text-sm font-medium text-slate-700">Accès Réseau & Identifiants Pronote</span>
+                                    </label>
+                                    <label class="flex items-center space-x-3 p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                                        <input type="checkbox" value="Prêt Matériel Informatique" class="besoin-cb rounded text-emerald-600 focus:ring-emerald-500">
+                                        <span class="text-sm font-medium text-slate-700">Prêt d'ordinateur portable</span>
+                                    </label>
+                                    <label class="flex items-center space-x-3 p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                                        <input type="checkbox" value="Badge d'accès Parking/Bâtiments" class="besoin-cb rounded text-emerald-600 focus:ring-emerald-500">
+                                        <span class="text-sm font-medium text-slate-700">Badge d'accès Parking / Bâtiments</span>
+                                    </label>
+                                    <label class="flex items-center space-x-3 p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                                        <input type="checkbox" value="Clés de Salle / Labo" class="besoin-cb rounded text-emerald-600 focus:ring-emerald-500">
+                                        <span class="text-sm font-medium text-slate-700">Clés de Salle / Armoires Pédagogiques</span>
+                                    </label>
+                                    <label class="flex items-center space-x-3 p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                                        <input type="checkbox" value="Formation Pronote & ENT" class="besoin-cb rounded text-emerald-600 focus:ring-emerald-500">
+                                        <span class="text-sm font-medium text-slate-700">Formation outils (Pronote / ENT)</span>
+                                    </label>
+                                    <label class="flex items-center space-x-3 p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+                                        <input type="checkbox" value="Accès Equipements Sportifs/Labo" class="besoin-cb rounded text-emerald-600 focus:ring-emerald-500">
+                                        <span class="text-sm font-medium text-slate-700">Accès aux salles spé. (Labo / Gymnase)</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="pt-6 border-t border-slate-100 flex justify-end">
+                                <button type="submit" class="w-full sm:w-auto px-8 py-4 bg-pravaz-blue hover:bg-blue-900 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-floppy-disk"></i> Enregistrer ma Fiche
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+                <!-- Card Récapitulatif (Visible après validation) -->
+                <div id="recap-card" class="hidden mt-8 bg-white rounded-3xl shadow-xl border border-emerald-300 p-6 sm:p-10">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900">Fiche d'Intégration Enseignants</h3>
+                                <p class="text-xs text-slate-500">Lycée Charles Gabriel Pravaz</p>
+                            </div>
+                        </div>
+                        <span class="px-3 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-full no-print">Enregistré</span>
+                    </div>
+
+                    <div id="recap-content" class="space-y-4 text-sm text-slate-700 mb-8">
+                        <!-- Dynamiquement rempli en JS -->
+                    </div>
+
+                    <div class="flex flex-wrap gap-4 no-print border-t border-slate-100 pt-6">
+                        <button onclick="window.print()" class="px-6 py-3 bg-slate-800 hover:bg-slate-900 text-white font-semibold rounded-xl transition flex items-center gap-2">
+                            <i class="fa-solid fa-print"></i> Imprimer / Télécharger en PDF
+                        </button>
+                        <button onclick="switchTab('programme')" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl transition flex items-center gap-2">
+                            Voir le programme de la journée <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= ONGLET 2: PROGRAMME DE LA JOURNÉE ================= -->
+        <section id="section-programme" class="tab-content hidden py-12">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider">Planning Officiel</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Programme de la Journée d'Accueil</h2>
+                    <p class="text-slate-600 text-sm mt-2">Découvrez les temps forts organisés pour faciliter votre arrivée au lycée.</p>
+                </div>
+
+                <!-- Timeline -->
+                <div class="relative border-l-4 border-pravaz-blue/30 ml-4 md:ml-32 space-y-8 py-4">
+
+                    <!-- Item 1 -->
+                    <div class="relative pl-6 md:pl-8">
+                        <div class="absolute -left-[11px] top-1.5 w-5 h-5 rounded-full bg-pravaz-blue border-4 border-white shadow"></div>
+                        <div class="hidden md:block absolute -left-32 top-1 w-24 text-right">
+                            <span class="text-sm font-bold text-pravaz-blue">08h30 - 09h00</span>
+                        </div>
+                        <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200">
+                            <span class="md:hidden inline-block px-2.5 py-0.5 rounded bg-blue-100 text-pravaz-blue text-xs font-bold mb-2">08h30 - 09h00</span>
+                            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                                <i class="fa-solid fa-mug-hot text-amber-500"></i> Accueil Café & Mot d'Accueil
+                            </h3>
+                            <p class="text-xs font-semibold text-slate-500 mt-1">Lieu : Salle des Personnels</p>
+                            <p class="text-sm text-slate-600 mt-2">Mot d'accueil chaleureux de la Direction et moment d'échange convivial entre nouveaux collègues.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="relative pl-6 md:pl-8">
+                        <div class="absolute -left-[11px] top-1.5 w-5 h-5 rounded-full bg-pravaz-blue border-4 border-white shadow"></div>
+                        <div class="hidden md:block absolute -left-32 top-1 w-24 text-right">
+                            <span class="text-sm font-bold text-pravaz-blue">09h00 - 10h30</span>
+                        </div>
+                        <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200">
+                            <span class="md:hidden inline-block px-2.5 py-0.5 rounded bg-blue-100 text-pravaz-blue text-xs font-bold mb-2">09h00 - 10h30</span>
+                            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                                <i class="fa-solid fa-school text-pravaz-blue"></i> Présentation du Projet d'Établissement
+                            </h3>
+                            <p class="text-xs font-semibold text-slate-500 mt-1">Lieu : Amphithéâtre</p>
+                            <p class="text-sm text-slate-600 mt-2">Présentation des axes stratégiques, de l'organisation pédagogique et du fonctionnement de la Vie Scolaire.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="relative pl-6 md:pl-8">
+                        <div class="absolute -left-[11px] top-1.5 w-5 h-5 rounded-full bg-emerald-500 border-4 border-white shadow"></div>
+                        <div class="hidden md:block absolute -left-32 top-1 w-24 text-right">
+                            <span class="text-sm font-bold text-emerald-600">10h30 - 11h45</span>
+                        </div>
+                        <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200">
+                            <span class="md:hidden inline-block px-2.5 py-0.5 rounded bg-emerald-100 text-emerald-800 text-xs font-bold mb-2">10h30 - 11h45</span>
+                            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                                <i class="fa-solid fa-key text-emerald-600"></i> Remise des Packs Numériques & Clés
+                            </h3>
+                            <p class="text-xs font-semibold text-slate-500 mt-1">Lieu : Salle B12 (Pôle Informatique)</p>
+                            <p class="text-sm text-slate-600 mt-2">Distribution des identifiants Pronote/ENT, paramétrage de l'accès réseau Wi-Fi et remise des badges/clés de salle.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 (Highlight Break) -->
+                    <div class="relative pl-6 md:pl-8">
+                        <div class="absolute -left-[11px] top-1.5 w-5 h-5 rounded-full bg-amber-500 border-4 border-white shadow"></div>
+                        <div class="hidden md:block absolute -left-32 top-1 w-24 text-right">
+                            <span class="text-sm font-bold text-amber-600">11h45 - 13h30</span>
+                        </div>
+                        <div class="bg-amber-50/60 rounded-2xl p-6 shadow-md border border-amber-200">
+                            <span class="md:hidden inline-block px-2.5 py-0.5 rounded bg-amber-200 text-amber-900 text-xs font-bold mb-2">11h45 - 13h30</span>
+                            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                                <i class="fa-solid fa-utensils text-amber-600"></i> Déjeuner Convivial
+                            </h3>
+                            <p class="text-xs font-semibold text-slate-500 mt-1">Lieu : Restaurant Scolaire</p>
+                            <p class="text-sm text-slate-700 mt-2">Repas offert avec les parrains de discipline pour échanger librement et répondre à toutes vos questions pratiques.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="relative pl-6 md:pl-8">
+                        <div class="absolute -left-[11px] top-1.5 w-5 h-5 rounded-full bg-pravaz-blue border-4 border-white shadow"></div>
+                        <div class="hidden md:block absolute -left-32 top-1 w-24 text-right">
+                            <span class="text-sm font-bold text-pravaz-blue">13h30 - 15h00</span>
+                        </div>
+                        <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200">
+                            <span class="md:hidden inline-block px-2.5 py-0.5 rounded bg-blue-100 text-pravaz-blue text-xs font-bold mb-2">13h30 - 15h00</span>
+                            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                                <i class="fa-solid fa-map-marked-alt text-indigo-600"></i> Visite Guidée de l'Établissement
+                            </h3>
+                            <p class="text-xs font-semibold text-slate-500 mt-1">Départ : Hall Principal</p>
+                            <p class="text-sm text-slate-600 mt-2">Découverte complète des infrastructures : Salles de cours, Vie Scolaire, CDI, Salle des Professeurs et équipements sportifs.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 6 -->
+                    <div class="relative pl-6 md:pl-8">
+                        <div class="absolute -left-[11px] top-1.5 w-5 h-5 rounded-full bg-pravaz-blue border-4 border-white shadow"></div>
+                        <div class="hidden md:block absolute -left-32 top-1 w-24 text-right">
+                            <span class="text-sm font-bold text-pravaz-blue">15h00 - 16h30</span>
+                        </div>
+                        <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200">
+                            <span class="md:hidden inline-block px-2.5 py-0.5 rounded bg-blue-100 text-pravaz-blue text-xs font-bold mb-2">15h00 - 16h30</span>
+                            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                                <i class="fa-solid fa-users-gear text-teal-600"></i> Atelier Outillages & Équipes Disciplinaires
+                            </h3>
+                            <p class="text-xs font-semibold text-slate-500 mt-1">Lieu : Salles par discipline</p>
+                            <p class="text-sm text-slate-600 mt-2">Prise en main guidée des outils numériques (Pronote, cahier de texte) et concertation avec votre équipe disciplinaire.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= ONGLET 3: INFOS PRATIQUES & CONTACTS ================= -->
+        <section id="section-infos" class="tab-content hidden py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="text-3xl font-extrabold text-slate-900">Informations Pratiques & Contacts</h2>
+                    <p class="text-slate-600 text-sm mt-2">Retrouvez les contacts indispensables et les accès directs aux outils du lycée.</p>
+                </div>
+
+                <!-- Cartes d'accès rapide -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200">
+                        <div class="w-12 h-12 bg-blue-100 text-pravaz-blue rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">PRONOTE</h3>
+                        <p class="text-xs text-slate-500 mb-4">Emplois du temps, cahier de texte numérique, saisie des absences et évaluations.</p>
+                        <a href="#" onclick="alert('Lien vers Pronote du lycée'); return false;" class="text-xs font-bold text-pravaz-blue hover:underline">Accéder à Pronote &rarr;</a>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200">
+                        <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">ENT MaClasseEnRégion</h3>
+                        <p class="text-xs text-slate-500 mb-4">Messagerie académique, documents de l'établissement et applications pédagogiques.</p>
+                        <a href="#" onclick="alert('Lien vers l\'ENT'); return false;" class="text-xs font-bold text-emerald-700 hover:underline">Se connecter à l'ENT &rarr;</a>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200">
+                        <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Guide de l'Enseignant</h3>
+                        <p class="text-xs text-slate-500 mb-4">Consignes de sécurité, protocole d'urgence (PPMS) et règlement intérieur.</p>
+                        <a href="#" onclick="alert('Téléchargement du Livret d\'Accueil PDF'); return false;" class="text-xs font-bold text-amber-700 hover:underline">Télécharger le Livret PDF &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Contacts Utiles -->
+                <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-200">
+                    <h3 class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-phone text-emerald-600"></i> Annuaire & Contacts Clés
+                    </h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-blue-100 text-pravaz-blue flex items-center justify-center font-bold flex-shrink-0">
+                                <i class="fa-solid fa-building-user"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Secrétariat de Direction</h4>
+                                <p class="text-xs text-slate-500">Prise de rendez-vous & dossier administratif</p>
+                                <p class="text-xs font-semibold text-slate-700 mt-2">
+                                    <i class="fa-solid fa-phone text-slate-400 mr-1"></i> Poste 101 / 102
+                                </p>
+                                <p class="text-xs font-semibold text-slate-700">
+                                    <i class="fa-solid fa-envelope text-slate-400 mr-1"></i> ce.0380068y@ac-grenoble.fr
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold flex-shrink-0">
+                                <i class="fa-solid fa-user-shield"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Vie Scolaire (CPE)</h4>
+                                <p class="text-xs text-slate-500">Suivi des élèves, absences & discipline</p>
+                                <p class="text-xs font-semibold text-slate-700 mt-2">
+                                    <i class="fa-solid fa-phone text-slate-400 mr-1"></i> Poste 201 / 202
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold flex-shrink-0">
+                                <i class="fa-solid fa-laptop-code"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Référent Numérique (RRNI)</h4>
+                                <p class="text-xs text-slate-500">Assistance informatique, comptes & matériel</p>
+                                <p class="text-xs font-semibold text-slate-700 mt-2">
+                                    <i class="fa-solid fa-envelope text-slate-400 mr-1"></i> informatique.pravaz@ac-grenoble.fr
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold flex-shrink-0">
+                                <i class="fa-solid fa-wallet"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Intendance / Gestion</h4>
+                                <p class="text-xs text-slate-500">Restauration scolaire & clés de salle</p>
+                                <p class="text-xs font-semibold text-slate-700 mt-2">
+                                    <i class="fa-solid fa-phone text-slate-400 mr-1"></i> Poste 108
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+            <div>
+                <span class="text-white font-bold text-sm block">Lycée Charles Gabriel Pravaz</span>
+                <span>Portail d'Accueil & Intégration des Personnels Enseignants</span>
+            </div>
+            <p>&copy; Lycée Pravaz - Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Tab management
+        function switchTab(tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(el => el.classList.add('hidden'));
+
+            const selected = document.getElementById('section-' + tabId);
+            if (selected) selected.classList.remove('hidden');
+
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(btn => {
+                btn.classList.remove('text-pravaz-blue', 'bg-blue-50');
+                btn.classList.add('text-slate-600');
+            });
+
+            const activeBtn = document.getElementById('nav-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.add('text-pravaz-blue', 'bg-blue-50');
+                activeBtn.classList.remove('text-slate-600');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        // Form handling and LocalStorage
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const me = document.querySelectorAll('.besoin-cb:checked');
+            const besoins = Array.from(me).map(cb => cb.value);
+
+            const formData = {
+                nom: document.getElementById('nom').value,
+                prenom: document.getElementById('prenom').value,
+                email: document.getElementById('email').value,
+                discipline: document.getElementById('discipline').value,
+                statut: document.querySelector('input[name="statut"]:checked').value,
+                besoins: besoins.length > 0 ? besoins.join(', ') : 'Aucun besoin spécifique coché'
+            };
+
+            try {
+                localStorage.setItem('pravaz_enseignant', JSON.stringify(formData));
+            } catch(e) {}
+
+            renderRecap(formData);
+            document.getElementById('saved-alert').classList.remove('hidden');
+        }
+
+        function renderRecap(data) {
+            const recapContent = document.getElementById('recap-content');
+            recapContent.innerHTML = `
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                    <div><span class="font-bold text-slate-900">Nom & Prénom :</span> ${escapeHtml(data.nom)} ${escapeHtml(data.prenom)}</div>
+                    <div><span class="font-bold text-slate-900">Email :</span> ${escapeHtml(data.email)}</div>
+                    <div><span class="font-bold text-slate-900">Discipline :</span> ${escapeHtml(data.discipline)}</div>
+                    <div><span class="font-bold text-slate-900">Statut :</span> ${escapeHtml(data.statut)}</div>
+                    <div class="sm:col-span-2"><span class="font-bold text-slate-900">Besoins & Formations :</span> ${escapeHtml(data.besoins)}</div>
+                </div>
+            `;
+
+            const card = document.getElementById('recap-card');
+            card.classList.remove('hidden');
+            card.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function loadSavedData() {
+            try {
+                const saved = localStorage.getItem('pravaz_enseignant');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    document.getElementById('nom').value = data.nom || '';
+                    document.getElementById('prenom').value = data.prenom || '';
+                    document.getElementById('email').value = data.email || '';
+                    document.getElementById('discipline').value = data.discipline || '';
+                    
+                    renderRecap(data);
+                }
+            } catch(e) {}
+        }
+
+        function checkSavedData() {
+            try {
+                if (localStorage.getItem('pravaz_enseignant')) {
+                    document.getElementById('saved-alert').classList.remove('hidden');
+                }
+            } catch(e) {}
+        }
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        window.onload = function() {
+            checkSavedData();
+        };
+    </script>
+</body>
+</html>
